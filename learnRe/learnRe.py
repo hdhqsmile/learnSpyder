@@ -1,5 +1,4 @@
 import re
-
 match = re.search(r'[1-9]\d{5}', 'BTN 100081')
 if match:
     print(match.group(0))
@@ -26,3 +25,24 @@ print(splitStr)
 str = 'BIU 100081,TSU 100084'
 newStr = re.sub(r'[1-9]\d{5}', ':zipcode', str)
 print(newStr)
+
+#面向对象用法
+pat = re.compile(r'[1-9]\d{5}') #将字符串编译成正则表达式
+match = pat.search('BIU 100081,TSU 100084')
+
+#Re库 默认采用贪婪匹配 即输出匹配最长的子串
+m = re.search(r'PY.*N', 'PYANBNCNDN')
+if m:
+    print(m.group(0))
+
+#最小匹配 需要用到操作符
+'''
+    *? 前一个字符 0-n次匹配，最小匹配
+    +? 前一个字符 1-n次匹配，最小匹配
+    ?? 前一个字符 0/1次匹配，最小匹配
+    {m,n}? 扩展前一个字符m-n次匹配，最小匹配
+'''
+
+m = re.search(r'PY.*?N','PYANBNCNDN')
+if m:
+    print(m.group(0))
